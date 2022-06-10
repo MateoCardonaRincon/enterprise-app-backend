@@ -4,5 +4,5 @@ import reactor.core.publisher.Mono;
 
 @FunctionalInterface
 public interface DeleteProduct {
-    Mono<Void> apply(String supplierId);
+    Mono<Void> apply(String productId);
 }

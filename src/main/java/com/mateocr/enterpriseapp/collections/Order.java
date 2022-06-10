@@ -15,27 +15,20 @@ public class Order {
     private LocalDate dateOfOrder;
     private Product product;
     private Integer units;
-    private Supplier supplier;
 
     public Order() {
     }
 
-    public Order(String id,
-                 LocalDate dateOfOrder,
-                 Product product,
-                 Integer units,
-                 Supplier supplier) {
+    public Order(String id, LocalDate dateOfOrder, Product product, Integer units) {
         this.id = id;
         this.dateOfOrder = dateOfOrder;
         this.product = product;
         this.units = units;
-        this.supplier = supplier;
     }
 
-    public Order(LocalDate dateOfOrder, Product product, Integer units, Supplier supplier) {
+    public Order(LocalDate dateOfOrder, Product product, Integer units) {
         this.dateOfOrder = dateOfOrder;
         this.product = product;
         this.units = units;
-        this.supplier = supplier;
     }
 }

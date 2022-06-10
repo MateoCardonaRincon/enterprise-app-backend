@@ -13,7 +13,7 @@ public class DeleteProductUseCase implements DeleteProduct {
     private final ProductRepository productRepository;
 
     @Override
-    public Mono<Void> apply(String supplierId) {
-        return productRepository.deleteById(supplierId);
+    public Mono<Void> apply(String productId) {
+        return productRepository.deleteById(productId);
     }
 }

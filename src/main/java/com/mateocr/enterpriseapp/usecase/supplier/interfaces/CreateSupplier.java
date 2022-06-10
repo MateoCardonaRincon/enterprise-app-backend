@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 @FunctionalInterface
 public interface CreateSupplier {
-    Mono<SupplierDTO> apply(SupplierDTO resourceDTO);
+    Mono<SupplierDTO> apply(SupplierDTO supplierDTO);
 }
