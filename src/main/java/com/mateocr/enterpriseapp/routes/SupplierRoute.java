@@ -34,7 +34,7 @@ public class SupplierRoute {
 
     @Bean
     public RouterFunction<ServerResponse> getAllSuppliers(GetAllSuppliersUseCase getAllSuppliersUseCase) {
-        return route(GET("supplier/getall"),
+        return route(GET("/supplier/getall"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllSuppliersUseCase.get(), SupplierDTO.class)));

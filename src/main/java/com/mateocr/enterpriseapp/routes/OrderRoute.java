@@ -33,7 +33,7 @@ public class OrderRoute {
 
     @Bean
     public RouterFunction<ServerResponse> getAllOrders(GetAllOrdersUseCase getAllOrdersUseCase) {
-        return route(GET("order/getall"),
+        return route(GET("/order/getall"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllOrdersUseCase.get(), OrderDTO.class)));

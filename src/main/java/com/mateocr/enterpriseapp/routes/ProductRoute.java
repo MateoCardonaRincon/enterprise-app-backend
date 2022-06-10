@@ -36,7 +36,7 @@ public class ProductRoute {
 
     @Bean
     public RouterFunction<ServerResponse> getAllProducts(GetAllProductsUseCase getAllProductsUseCase) {
-        return route(GET("product/getall"),
+        return route(GET("/product/getall"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllProductsUseCase.get(), ProductDTO.class)));

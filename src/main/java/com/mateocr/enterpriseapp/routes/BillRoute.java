@@ -33,7 +33,7 @@ public class BillRoute {
 
     @Bean
     public RouterFunction<ServerResponse> getAllBills(GetAllBillsUseCase getAllBillsUseCase) {
-        return route(GET("bill/getall"),
+        return route(GET("/bill/getall"),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllBillsUseCase.get(), BillDTO.class)));
