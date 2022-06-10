@@ -4,8 +4,6 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.security.Provider;
-
 @Data
 @Document("product")
 public class Product {
@@ -18,7 +16,7 @@ public class Product {
     private Integer minimumAmount;
     private Integer maximumAmount;
     private Double price;
-    private Provider provider;
+    private Supplier supplier;
 
     public Product() {
     }
@@ -30,7 +28,7 @@ public class Product {
                    Integer minimumAmount,
                    Integer maximumAmount,
                    Double price,
-                   Provider provider) {
+                   Supplier supplier) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,7 +36,7 @@ public class Product {
         this.minimumAmount = minimumAmount;
         this.maximumAmount = maximumAmount;
         this.price = price;
-        this.provider = provider;
+        this.supplier = supplier;
     }
 
     public Product(String name,
@@ -47,13 +45,13 @@ public class Product {
                    Integer minimumAmount,
                    Integer maximumAmount,
                    Double price,
-                   Provider provider) {
+                   Supplier supplier) {
         this.name = name;
         this.description = description;
         this.stock = stock;
         this.minimumAmount = minimumAmount;
         this.maximumAmount = maximumAmount;
         this.price = price;
-        this.provider = provider;
+        this.supplier = supplier;
     }
 }

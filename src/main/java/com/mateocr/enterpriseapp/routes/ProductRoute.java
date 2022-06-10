@@ -2,7 +2,9 @@ package com.mateocr.enterpriseapp.routes;
 
 import com.mateocr.enterpriseapp.dto.ProductDTO;
 import com.mateocr.enterpriseapp.usecase.product.CreateProductUseCase;
+import com.mateocr.enterpriseapp.usecase.product.DeleteProductUseCase;
 import com.mateocr.enterpriseapp.usecase.product.SellProductUseCase;
+import com.mateocr.enterpriseapp.usecase.supplier.DeleteSupplierUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -29,5 +31,12 @@ public class ProductRoute {
         return route(
                 POST("/product/create").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(ProductDTO.class).flatMap(executor));
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> deleteProduct(DeleteProductUseCase deleteProductUseCase) {
+        return route(DELETE("product/delete/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.noContent()
+                        .build(deleteProductUseCase.apply(request.pathVariable("id"))));
     }
 }
