@@ -1,23 +1,24 @@
-package com.mateocr.enterpriseapp.usecase;
+package com.mateocr.enterpriseapp.usecase.supplier;
 
 import com.mateocr.enterpriseapp.dto.SupplierDTO;
 import com.mateocr.enterpriseapp.mapper.SupplierMapper;
 import com.mateocr.enterpriseapp.repository.SupplierRepository;
-import com.mateocr.enterpriseapp.usecase.interfaces.CreateSupplier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
+
+import java.util.function.Supplier;
 
 @Service
 @RequiredArgsConstructor
-public class SubscribeSupplierUseCase implements CreateSupplier {
+public class GetAllSuppliersUseCase implements Supplier<Flux<SupplierDTO>> {
 
     private final SupplierRepository supplierRepository;
     private final SupplierMapper supplierMapper;
 
     @Override
-    public Mono<SupplierDTO> apply(SupplierDTO supplierDTO) {
-        return supplierRepository.save(supplierMapper.convertSupplierDTOToCollection().apply(supplierDTO))
+    public Flux<SupplierDTO> get() {
+        return supplierRepository.findAll()
                 .map(supplier -> supplierMapper.convertCollectionToSupplierDTO().apply(supplier));
     }
 }

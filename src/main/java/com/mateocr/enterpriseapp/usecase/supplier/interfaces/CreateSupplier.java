@@ -1,4 +1,4 @@
-package com.mateocr.enterpriseapp.usecase.interfaces;
+package com.mateocr.enterpriseapp.usecase.supplier.interfaces;
 
 import com.mateocr.enterpriseapp.dto.SupplierDTO;
 import reactor.core.publisher.Mono;
