@@ -1,6 +1,5 @@
 package com.mateocr.enterpriseapp.dto;
 
-import com.mateocr.enterpriseapp.collections.Product;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -14,6 +13,6 @@ public class BillDTO {
     private LocalDate dateOfSale;
     private String customerName;
     private String sellerName;
-    private List<Product> soldProducts = new ArrayList<>();
+    private List<ProductDTO> soldProducts = new ArrayList<>();
     private Double totalPaid;
 }

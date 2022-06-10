@@ -4,6 +4,6 @@ import com.mateocr.enterpriseapp.dto.ProductDTO;
 import reactor.core.publisher.Mono;
 
 @FunctionalInterface
-public interface UpdateProduct {
-    Mono<ProductDTO> apply(String productId, Integer units);
+public interface RestockProduct {
+    Mono<ProductDTO> apply(ProductDTO product, Integer units);
 }

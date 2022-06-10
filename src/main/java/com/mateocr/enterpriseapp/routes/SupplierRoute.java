@@ -42,7 +42,7 @@ public class SupplierRoute {
 
     @Bean
     public RouterFunction<ServerResponse> deleteSupplier(DeleteSupplierUseCase deleteSupplierUseCase) {
-        return route(DELETE("supplier/delete/{id}").and(accept(MediaType.APPLICATION_JSON)),
+        return route(DELETE("/supplier/delete/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.noContent()
                         .build(deleteSupplierUseCase.apply(request.pathVariable("id"))));
     }
