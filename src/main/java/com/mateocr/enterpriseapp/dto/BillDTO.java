@@ -11,9 +11,9 @@ import java.util.List;
 public class BillDTO {
 
     private String id;
-    private String clientName;
     private LocalDate dateOfSale;
+    private String customerName;
     private String sellerName;
-    private List<Product> products = new ArrayList<>();
-    private Integer totalPaid;
+    private List<Product> soldProducts = new ArrayList<>();
+    private Double totalPaid;
 }

@@ -14,4 +14,5 @@ public class ProductDTO {
     private Integer maximumAmount;
     private Double price;
     private Supplier supplier;
+    private Integer units;
 }

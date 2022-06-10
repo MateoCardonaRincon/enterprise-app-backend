@@ -14,38 +14,29 @@ public class Bill {
 
     @Id
     private String id;
-    private String clientName;
     private LocalDate dateOfSale;
+    private String customerName;
     private String sellerName;
-    private List<Product> products = new ArrayList<>();
-    private Integer totalPaid;
+    private List<Product> soldProducts = new ArrayList<>();
+    private Double totalPaid;
 
     public Bill() {
     }
 
-    public Bill(String id,
-                String clientName,
-                LocalDate dateOfSale,
-                String sellerName,
-                List<Product> products,
-                Integer totalPaid) {
+    public Bill(String id, LocalDate dateOfSale, String customerName, String sellerName, List<Product> soldProducts, Double totalPaid) {
         this.id = id;
-        this.clientName = clientName;
         this.dateOfSale = dateOfSale;
+        this.customerName = customerName;
         this.sellerName = sellerName;
-        this.products = products;
+        this.soldProducts = soldProducts;
         this.totalPaid = totalPaid;
     }
 
-    public Bill(String clientName,
-                LocalDate dateOfSale,
-                String sellerName,
-                List<Product> products,
-                Integer totalPaid) {
-        this.clientName = clientName;
+    public Bill(LocalDate dateOfSale, String customerName, String sellerName, List<Product> soldProducts, Double totalPaid) {
         this.dateOfSale = dateOfSale;
+        this.customerName = customerName;
         this.sellerName = sellerName;
-        this.products = products;
+        this.soldProducts = soldProducts;
         this.totalPaid = totalPaid;
     }
 }

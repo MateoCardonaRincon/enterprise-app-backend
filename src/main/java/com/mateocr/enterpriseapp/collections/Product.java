@@ -17,18 +17,12 @@ public class Product {
     private Integer maximumAmount;
     private Double price;
     private Supplier supplier;
+    private Integer units;
 
     public Product() {
     }
 
-    public Product(String id,
-                   String name,
-                   String description,
-                   Integer stock,
-                   Integer minimumAmount,
-                   Integer maximumAmount,
-                   Double price,
-                   Supplier supplier) {
+    public Product(String id, String name, String description, Integer stock, Integer minimumAmount, Integer maximumAmount, Double price, Supplier supplier, Integer units) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,15 +31,10 @@ public class Product {
         this.maximumAmount = maximumAmount;
         this.price = price;
         this.supplier = supplier;
+        this.units = units;
     }
 
-    public Product(String name,
-                   String description,
-                   Integer stock,
-                   Integer minimumAmount,
-                   Integer maximumAmount,
-                   Double price,
-                   Supplier supplier) {
+    public Product(String name, String description, Integer stock, Integer minimumAmount, Integer maximumAmount, Double price, Supplier supplier, Integer units) {
         this.name = name;
         this.description = description;
         this.stock = stock;
@@ -53,5 +42,6 @@ public class Product {
         this.maximumAmount = maximumAmount;
         this.price = price;
         this.supplier = supplier;
+        this.units = units;
     }
 }
