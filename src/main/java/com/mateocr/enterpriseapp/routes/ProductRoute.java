@@ -1,7 +1,6 @@
 package com.mateocr.enterpriseapp.routes;
 
 import com.mateocr.enterpriseapp.collections.Product;
-import com.mateocr.enterpriseapp.dto.BillDTO;
 import com.mateocr.enterpriseapp.dto.ProductDTO;
 import com.mateocr.enterpriseapp.usecase.product.*;
 import org.springframework.context.annotation.Bean;
