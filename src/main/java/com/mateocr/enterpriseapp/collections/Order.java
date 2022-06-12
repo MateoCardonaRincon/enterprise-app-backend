@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 
 @Data
-@Document("order")
+@Document(collection = "order")
 public class Order {
 
     @Id

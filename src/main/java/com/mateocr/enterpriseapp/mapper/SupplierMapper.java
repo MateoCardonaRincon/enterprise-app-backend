@@ -5,9 +5,11 @@ import com.mateocr.enterpriseapp.dto.SupplierDTO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.config.EnableWebFlux;
 
 import java.util.function.Function;
 
+@EnableWebFlux
 @Component
 @RequiredArgsConstructor
 public class SupplierMapper {

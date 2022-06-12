@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Document("bill")
+@Document(collection = "bill")
 public class Bill {
 
     @Id
