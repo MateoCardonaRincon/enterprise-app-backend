@@ -3,14 +3,17 @@ package com.mateocr.enterpriseapp.usecase.bill;
 import com.mateocr.enterpriseapp.dto.BillDTO;
 import com.mateocr.enterpriseapp.mapper.BillMapper;
 import com.mateocr.enterpriseapp.repository.BillRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 
 import java.util.function.Supplier;
 
 @Service
-@RequiredArgsConstructor
+@Validated
+@AllArgsConstructor
 public class GetAllBillsUseCase implements Supplier<Flux<BillDTO>> {
 
     private final BillRepository billRepository;
