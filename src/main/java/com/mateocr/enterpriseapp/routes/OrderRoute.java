@@ -46,7 +46,7 @@ public class OrderRoute {
     public RouterFunction<ServerResponse> createOrder(CreateOrderUseCase createOrderUseCase) {
         Function<OrderDTO, Mono<ServerResponse>> executor =
                 orderDTO -> createOrderUseCase.apply(orderDTO)
-                        .flatMap(thisOrder -> ServerResponse.ok()
+                        .flatMap(thisOrder -> ServerResponse.status(HttpStatus.CREATED)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(thisOrder));
         return route(
@@ -58,14 +58,14 @@ public class OrderRoute {
     @Bean
     @RouterOperation(path = "/order/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllOrdersUseCase.class, method = RequestMethod.GET, beanMethod = "apply",
+            beanClass = GetAllOrdersUseCase.class, method = RequestMethod.GET, beanMethod = "get",
             operation = @Operation(operationId = "getOrders", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
                             content = @Content(schema = @Schema(implementation = Order.class)))}
             ))
     public RouterFunction<ServerResponse> getAllOrders(GetAllOrdersUseCase getAllOrdersUseCase) {
         return route(GET("/order/getall"),
-                request -> ServerResponse.ok()
+                request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllOrdersUseCase.get(), OrderDTO.class)));
     }

@@ -42,7 +42,7 @@ public class ProductRoute {
     public RouterFunction<ServerResponse> createProduct(CreateProductUseCase createProductUseCase) {
         Function<ProductDTO, Mono<ServerResponse>> executor =
                 productDTO -> createProductUseCase.apply(productDTO)
-                        .flatMap(thisProduct -> ServerResponse.ok()
+                        .flatMap(thisProduct -> ServerResponse.status(HttpStatus.CREATED)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(thisProduct));
         return route(
@@ -54,14 +54,14 @@ public class ProductRoute {
     @Bean
     @RouterOperation(path = "/product/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllProductsUseCase.class, method = RequestMethod.GET, beanMethod = "apply",
+            beanClass = GetAllProductsUseCase.class, method = RequestMethod.GET, beanMethod = "get",
             operation = @Operation(operationId = "getProducts", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
                             content = @Content(schema = @Schema(implementation = Product.class)))}
             ))
     public RouterFunction<ServerResponse> getAllProducts(GetAllProductsUseCase getAllProductsUseCase) {
         return route(GET("/product/getall"),
-                request -> ServerResponse.ok()
+                request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllProductsUseCase.get(), ProductDTO.class)));
     }
@@ -85,7 +85,7 @@ public class ProductRoute {
         return route(PUT("/product/restock/{units}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(ProductDTO.class)
                         .flatMap(productDTO -> restockProductUseCase.apply(productDTO, Integer.parseInt(request.pathVariable("units"))))
-                        .flatMap(result -> ServerResponse.ok()
+                        .flatMap(result -> ServerResponse.status(HttpStatus.ACCEPTED)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(result))
                         .onErrorResume(throwable -> ServerResponse.status(HttpStatus.BAD_REQUEST).build()));

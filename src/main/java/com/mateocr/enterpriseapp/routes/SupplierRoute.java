@@ -46,7 +46,7 @@ public class SupplierRoute {
     public RouterFunction<ServerResponse> subscribeSupplier(SubscribeSupplierUseCase subscribeSupplierUseCase) {
         Function<SupplierDTO, Mono<ServerResponse>> executor =
                 supplierDTO -> subscribeSupplierUseCase.apply(supplierDTO)
-                        .flatMap(thisSupplier -> ServerResponse.ok()
+                        .flatMap(thisSupplier -> ServerResponse.status(HttpStatus.CREATED)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(thisSupplier));
         return route(
@@ -65,7 +65,7 @@ public class SupplierRoute {
             ))
     public RouterFunction<ServerResponse> getAllSuppliers(GetAllSuppliersUseCase getAllSuppliersUseCase) {
         return route(GET("/supplier/getall"),
-                request -> ServerResponse.ok()
+                request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllSuppliersUseCase.get(), SupplierDTO.class)));
     }

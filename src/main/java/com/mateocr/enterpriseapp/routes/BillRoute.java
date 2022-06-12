@@ -47,7 +47,7 @@ public class BillRoute {
     public RouterFunction<ServerResponse> createBill(CreateBillUseCase createBillUseCase) {
         Function<BillDTO, Mono<ServerResponse>> executor =
                 billDTO -> createBillUseCase.apply(billDTO)
-                        .flatMap(thisBill -> ServerResponse.ok()
+                        .flatMap(thisBill -> ServerResponse.status(HttpStatus.CREATED)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .bodyValue(thisBill));
         return route(
@@ -59,14 +59,14 @@ public class BillRoute {
     @Bean
     @RouterOperation(path = "/bill/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllBillsUseCase.class, method = RequestMethod.GET, beanMethod = "apply",
+            beanClass = GetAllBillsUseCase.class, method = RequestMethod.GET, beanMethod = "get",
             operation = @Operation(operationId = "getBills", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
                             content = @Content(schema = @Schema(implementation = Bill.class)))}
             ))
     public RouterFunction<ServerResponse> getAllBills(GetAllBillsUseCase getAllBillsUseCase) {
         return route(GET("/bill/getall"),
-                request -> ServerResponse.ok()
+                request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getAllBillsUseCase.get(), BillDTO.class)));
     }
