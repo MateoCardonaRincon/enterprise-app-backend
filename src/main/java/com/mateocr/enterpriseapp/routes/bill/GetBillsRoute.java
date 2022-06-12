@@ -26,7 +26,7 @@ public class GetBillsRoute {
     @RouterOperation(path = "/bill/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
             beanClass = GetAllBillsUseCase.class, method = RequestMethod.GET, beanMethod = "get",
-            operation = @Operation(operationId = "getBills", responses = {
+            operation = @Operation(operationId = "getAllBills", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
                             content = @Content(schema = @Schema(implementation = Bill.class)))}
             ))
