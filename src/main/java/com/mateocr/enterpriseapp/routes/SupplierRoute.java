@@ -58,7 +58,7 @@ public class SupplierRoute {
     @Bean
     @RouterOperation(path = "/supplier/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllSuppliersUseCase.class, method = RequestMethod.GET, beanMethod = "apply",
+            beanClass = GetAllSuppliersUseCase.class, method = RequestMethod.GET, beanMethod = "get",
             operation = @Operation(operationId = "getSuppliers", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
                             content = @Content(schema = @Schema(implementation = Supplier.class)))}
