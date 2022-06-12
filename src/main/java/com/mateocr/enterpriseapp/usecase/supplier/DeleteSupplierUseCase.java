@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class DeleteSupplierUseCase implements DeleteSupplier {
@@ -14,6 +16,8 @@ public class DeleteSupplierUseCase implements DeleteSupplier {
 
     @Override
     public Mono<Void> apply(String supplierId) {
-        return supplierRepository.deleteById(supplierId);
+        return supplierRepository.findById(supplierId)
+                .flatMap(entity -> supplierRepository.deleteById(entity.getId()))
+                .switchIfEmpty(Mono.empty());
     }
 }

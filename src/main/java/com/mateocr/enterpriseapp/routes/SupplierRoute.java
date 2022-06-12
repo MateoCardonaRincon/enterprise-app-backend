@@ -1,10 +1,6 @@
 package com.mateocr.enterpriseapp.routes;
 
-import com.mateocr.enterpriseapp.collections.Bill;
 import com.mateocr.enterpriseapp.dto.SupplierDTO;
-import com.mateocr.enterpriseapp.usecase.bill.CreateBillUseCase;
-import com.mateocr.enterpriseapp.usecase.bill.GetAllBillsUseCase;
-import com.mateocr.enterpriseapp.usecase.product.DeleteProductUseCase;
 import com.mateocr.enterpriseapp.usecase.supplier.DeleteSupplierUseCase;
 import com.mateocr.enterpriseapp.usecase.supplier.GetAllSuppliersUseCase;
 import com.mateocr.enterpriseapp.usecase.supplier.SubscribeSupplierUseCase;
