@@ -5,5 +5,5 @@ import reactor.core.publisher.Mono;
 
 @FunctionalInterface
 public interface RestockProduct {
-    Mono<ProductDTO> apply(ProductDTO product, Integer units);
+    Mono<ProductDTO> apply(ProductDTO productDTO, Integer units);
 }

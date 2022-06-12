@@ -20,8 +20,8 @@ public class RestockProductUseCase implements RestockProduct {
         return productRepository.findById(productDTO.getId())
                 .filter(soldProduct -> soldProduct.getStock() + units <= soldProduct.getMaximumAmount())
                 .flatMap(soldProduct -> {
-                    productDTO.setStock(soldProduct.getStock() + units);
-                    return productRepository.save(productMapper.convertProductDTOToCollection().apply(productDTO))
+                    soldProduct.setStock(soldProduct.getStock() + units);
+                    return productRepository.save(soldProduct)
                             .map(updatedProduct -> productMapper.convertCollectionToProductDTO().apply(updatedProduct));
                 })
                 .switchIfEmpty(Mono.just(new ProductDTO()));

@@ -15,10 +15,10 @@ public class ProductMapper {
     private final ModelMapper modelMapper;
 
     public Function<ProductDTO, Product> convertProductDTOToCollection() {
-        return supplierDTO -> modelMapper.map(supplierDTO, Product.class);
+        return productDTO -> modelMapper.map(productDTO, Product.class);
     }
 
     public Function<Product, ProductDTO> convertCollectionToProductDTO() {
-        return supplier -> modelMapper.map(supplier, ProductDTO.class);
+        return product -> modelMapper.map(product, ProductDTO.class);
     }
 }
