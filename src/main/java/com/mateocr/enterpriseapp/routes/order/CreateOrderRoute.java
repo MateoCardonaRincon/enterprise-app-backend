@@ -1,12 +1,8 @@
-package com.mateocr.enterpriseapp.routes;
+package com.mateocr.enterpriseapp.routes.order;
 
 import com.mateocr.enterpriseapp.collections.Order;
-import com.mateocr.enterpriseapp.collections.Product;
 import com.mateocr.enterpriseapp.dto.OrderDTO;
 import com.mateocr.enterpriseapp.usecase.order.CreateOrderUseCase;
-import com.mateocr.enterpriseapp.usecase.order.GetAllOrdersUseCase;
-import com.mateocr.enterpriseapp.usecase.product.CreateProductUseCase;
-import com.mateocr.enterpriseapp.usecase.product.GetAllProductsUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -18,18 +14,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import java.util.function.Function;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.*;
+import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
+import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class OrderRoute {
+public class CreateOrderRoute {
 
     @Bean
     @RouterOperation(path = "/order/create", produces = {
@@ -39,9 +35,9 @@ public class OrderRoute {
             operation = @Operation(operationId = "createOrder", responses = {
                     @ApiResponse(responseCode = "201",
                             description = "successful operation",
-                            content = @Content(schema = @Schema(implementation = Order.class))),
+                            content = @Content(schema = @Schema(implementation = OrderDTO.class))),
                     @ApiResponse(responseCode = "400", description = "bad request: order not specified properly")},
-                    requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = Order.class)))
+                    requestBody = @RequestBody(content = @Content(schema = @Schema(implementation = OrderDTO.class)))
             ))
     public RouterFunction<ServerResponse> createOrder(CreateOrderUseCase createOrderUseCase) {
         Function<OrderDTO, Mono<ServerResponse>> executor =
@@ -53,20 +49,5 @@ public class OrderRoute {
                 POST("/order/create").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(OrderDTO.class).flatMap(executor)
                         .onErrorResume(throwable -> ServerResponse.status(HttpStatus.BAD_REQUEST).build()));
-    }
-
-    @Bean
-    @RouterOperation(path = "/order/getall", produces = {
-            MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllOrdersUseCase.class, method = RequestMethod.GET, beanMethod = "get",
-            operation = @Operation(operationId = "getOrders", responses = {
-                    @ApiResponse(responseCode = "200", description = "successful operation",
-                            content = @Content(schema = @Schema(implementation = Order.class)))}
-            ))
-    public RouterFunction<ServerResponse> getAllOrders(GetAllOrdersUseCase getAllOrdersUseCase) {
-        return route(GET("/order/getall"),
-                request -> ServerResponse.status(HttpStatus.OK)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(getAllOrdersUseCase.get(), OrderDTO.class)));
     }
 }

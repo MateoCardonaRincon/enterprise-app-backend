@@ -1,9 +1,9 @@
 package com.mateocr.enterpriseapp.usecase.order;
 
 import com.mateocr.enterpriseapp.collections.Order;
+import com.mateocr.enterpriseapp.collections.Product;
 import com.mateocr.enterpriseapp.collections.Supplier;
 import com.mateocr.enterpriseapp.dto.OrderDTO;
-import com.mateocr.enterpriseapp.dto.ProductDTO;
 import com.mateocr.enterpriseapp.mapper.OrderMapper;
 import com.mateocr.enterpriseapp.repository.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,7 +44,7 @@ class GetAllOrdersUseCaseTest {
         supplier.setPhoneNumber("123456");
         supplier.setPersonalId("321654");
 
-        ProductDTO product = new ProductDTO();
+        Product product = new Product();
         product.setId("132");
         product.setName("screw");
         product.setDescription("steel 1-in");

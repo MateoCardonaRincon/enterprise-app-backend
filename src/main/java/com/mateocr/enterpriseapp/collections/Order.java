@@ -1,6 +1,5 @@
 package com.mateocr.enterpriseapp.collections;
 
-import com.mateocr.enterpriseapp.dto.ProductDTO;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,20 +13,20 @@ public class Order {
     @Id
     private String id;
     private LocalDate dateOfOrder;
-    private ProductDTO product;
+    private Product product;
     private Integer units;
 
     public Order() {
     }
 
-    public Order(String id, LocalDate dateOfOrder, ProductDTO product, Integer units) {
+    public Order(String id, LocalDate dateOfOrder, Product product, Integer units) {
         this.id = id;
         this.dateOfOrder = dateOfOrder;
         this.product = product;
         this.units = units;
     }
 
-    public Order(LocalDate dateOfOrder, ProductDTO product, Integer units) {
+    public Order(LocalDate dateOfOrder, Product product, Integer units) {
         this.dateOfOrder = dateOfOrder;
         this.product = product;
         this.units = units;

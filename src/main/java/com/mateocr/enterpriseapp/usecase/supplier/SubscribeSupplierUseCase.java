@@ -6,9 +6,12 @@ import com.mateocr.enterpriseapp.repository.SupplierRepository;
 import com.mateocr.enterpriseapp.usecase.supplier.interfaces.CreateSupplier;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+
 @Service
+@Validated
 @RequiredArgsConstructor
 public class SubscribeSupplierUseCase implements CreateSupplier {
 

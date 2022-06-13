@@ -5,12 +5,13 @@ import com.mateocr.enterpriseapp.dto.BillDTO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.config.EnableWebFlux;
 
 import java.util.function.Function;
 
 @EnableWebFlux
-@Configuration
+@Component
 @RequiredArgsConstructor
 public class BillMapper {
 

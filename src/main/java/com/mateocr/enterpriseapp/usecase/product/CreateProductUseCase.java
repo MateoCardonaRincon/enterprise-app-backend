@@ -6,9 +6,12 @@ import com.mateocr.enterpriseapp.repository.ProductRepository;
 import com.mateocr.enterpriseapp.usecase.product.interfaces.CreateProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+
 @Service
+@Validated
 @RequiredArgsConstructor
 public class CreateProductUseCase implements CreateProduct {
 

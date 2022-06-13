@@ -1,8 +1,6 @@
-package com.mateocr.enterpriseapp.routes.bill;
+package com.mateocr.enterpriseapp.routes.order;
 
-import com.mateocr.enterpriseapp.collections.Bill;
-import com.mateocr.enterpriseapp.dto.BillDTO;
-import com.mateocr.enterpriseapp.usecase.bill.GetAllBillsUseCase;
+import com.mateocr.enterpriseapp.dto.OrderDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -21,19 +19,20 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class GetBillsRoute {
+public class GetAllOrdersRoute {
+
     @Bean
-    @RouterOperation(path = "/bill/getall", produces = {
+    @RouterOperation(path = "/order/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllBillsUseCase.class, method = RequestMethod.GET, beanMethod = "get",
-            operation = @Operation(operationId = "getAllBills", responses = {
+            beanClass = com.mateocr.enterpriseapp.usecase.order.GetAllOrdersUseCase.class, method = RequestMethod.GET, beanMethod = "get",
+            operation = @Operation(operationId = "getAllOrders", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
-                            content = @Content(schema = @Schema(implementation = BillDTO.class)))}
+                            content = @Content(schema = @Schema(implementation = OrderDTO.class)))}
             ))
-    public RouterFunction<ServerResponse> getAllBills(GetAllBillsUseCase getAllBillsUseCase) {
-        return route(GET("/bill/getall"),
+    public RouterFunction<ServerResponse> getAllOrders(com.mateocr.enterpriseapp.usecase.order.GetAllOrdersUseCase getAllOrdersUseCase) {
+        return route(GET("/order/getall"),
                 request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(getAllBillsUseCase.get(), BillDTO.class)));
+                        .body(BodyInserters.fromPublisher(getAllOrdersUseCase.get(), OrderDTO.class)));
     }
 }

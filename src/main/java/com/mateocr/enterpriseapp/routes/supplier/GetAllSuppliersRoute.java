@@ -1,8 +1,7 @@
-package com.mateocr.enterpriseapp.routes.bill;
+package com.mateocr.enterpriseapp.routes.supplier;
 
-import com.mateocr.enterpriseapp.collections.Bill;
-import com.mateocr.enterpriseapp.dto.BillDTO;
-import com.mateocr.enterpriseapp.usecase.bill.GetAllBillsUseCase;
+import com.mateocr.enterpriseapp.dto.SupplierDTO;
+import com.mateocr.enterpriseapp.usecase.supplier.GetAllSuppliersUseCase;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -17,23 +16,26 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
+import java.util.function.Supplier;
+
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class GetBillsRoute {
+public class GetAllSuppliersRoute {
+
     @Bean
-    @RouterOperation(path = "/bill/getall", produces = {
+    @RouterOperation(path = "/supplier/getall", produces = {
             MediaType.APPLICATION_JSON_VALUE},
-            beanClass = GetAllBillsUseCase.class, method = RequestMethod.GET, beanMethod = "get",
-            operation = @Operation(operationId = "getAllBills", responses = {
+            beanClass = GetAllSuppliersUseCase.class, method = RequestMethod.GET, beanMethod = "get",
+            operation = @Operation(operationId = "getAllSuppliers", responses = {
                     @ApiResponse(responseCode = "200", description = "successful operation",
-                            content = @Content(schema = @Schema(implementation = BillDTO.class)))}
+                            content = @Content(schema = @Schema(implementation = Supplier.class)))}
             ))
-    public RouterFunction<ServerResponse> getAllBills(GetAllBillsUseCase getAllBillsUseCase) {
-        return route(GET("/bill/getall"),
+    public RouterFunction<ServerResponse> getAllSuppliers(GetAllSuppliersUseCase getAllSuppliersUseCase) {
+        return route(GET("/supplier/getall"),
                 request -> ServerResponse.status(HttpStatus.OK)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(getAllBillsUseCase.get(), BillDTO.class)));
+                        .body(BodyInserters.fromPublisher(getAllSuppliersUseCase.get(), SupplierDTO.class)));
     }
 }

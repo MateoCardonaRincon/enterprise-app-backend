@@ -6,9 +6,13 @@ import com.mateocr.enterpriseapp.repository.ProductRepository;
 import com.mateocr.enterpriseapp.usecase.product.interfaces.RestockProduct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+import javax.validation.Valid;
+
 @Service
+@Validated
 @RequiredArgsConstructor
 public class RestockProductUseCase implements RestockProduct {
 
